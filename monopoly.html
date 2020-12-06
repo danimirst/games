@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        canvas {
-            background-color: white;
+        html,
+        body {
+            height: 100%;
+        }
+
+        /* Scale canvas with resize attribute to full size */
+        canvas[resize] {
+            width: 100%;
+            height: 100%;
         }
     </style>
 
-<script src = "three.js">
-    let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
-</script>
+    <script type="text/javascript" src="lib/paper-full.js"></script>
 
 </head>
 <body>
-    <canvas id = "momo" width= "600" height = "700"></canvas> 
-
-    <script src = "monopoly.js"></script>
+    <canvas id="board" resize></canvas> 
+    <script type="text/paperscript" data-paper-canvas="board" src="board.js"></script>
+    <script src="monopoly.js"></script>
 </body>
 </html>
