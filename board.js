@@ -9,3 +9,5 @@ path.fillColor = 'red';
 view.onResize = function(event) {
     path.position = view.center;
 }
+
+//CCOOKIES
