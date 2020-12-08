@@ -7,4 +7,3 @@ var roll_dice = function() {
 };
 
 console.log(roll_dice());
-
