@@ -78,7 +78,25 @@ ChanceTile.prototype.draw = function() {
     var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
     border.strokeColor = 'black';
     var text = new PointText(border.bounds.center);
-    text.content = 'CHANCE';
+    text.content = 'Chance';
+    text.style = {
+        fontSize : tileFontSize,
+        justification: 'center'
+    };
+    var tile = new Group(border, text);
+    place_tile(tile, this.index);
+};
+
+
+var CommunityChestTile = function(i) {
+    this.index = i;
+}
+
+CommunityChestTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.bounds.center);
+    text.content = 'Community\nChest';
     text.style = {
         fontSize : tileFontSize,
         justification: 'center'
@@ -99,10 +117,11 @@ var green = '#0a611b';
 var blue = '#1342c2';
 var tiles = [
     new PropertyTile(1, "Intel\nMuseum", 60, purple),
+    new CommunityChestTile(2),
     new PropertyTile(3, "Winchester\nMystery\nHouse", 60, purple),
 
     new PropertyTile(6, "Ulistac\nNatural\nArea", 100, sky_blue),
-    new ChanceTile  (7),
+    new ChanceTile(7),
     new PropertyTile(8, "Bowers\nPark", 12, sky_blue),
     new PropertyTile(9, "Central\nPark", 100, sky_blue),
 
@@ -111,6 +130,7 @@ var tiles = [
     new PropertyTile(14, "Pomeroy\nAvenue", 160, pink),
 
     new PropertyTile(16, "Voyager\nCraft\nCoffee", 180, orange),
+    new CommunityChestTile(17),
     new PropertyTile(18, "Safeway", 180, orange),
     new PropertyTile(19, "Target", 200, orange),
 
@@ -125,6 +145,7 @@ var tiles = [
 
     new PropertyTile(31, "Homestead\nRd.", 300 , green),
     new PropertyTile(32, "El\nCamino\nReal", 300, green),
+    new CommunityChestTile(33),
     new PropertyTile(34, "Stevens\nCreek\nBlvd.", 320, green),
 
     new ChanceTile  (36),
@@ -132,10 +153,10 @@ var tiles = [
     new PropertyTile(39, "Santana\nRow", 400, blue),
 
 
-    // new PropertyTile( 5, "Caltrain Express", 20),
-    // new PropertyTile(15, "Light Rail", 200),
-    // new PropertyTile(25, "Blue Line", 200),
-    // new PropertyTile(35, "Clipper", 200),
+    // new UtilityTile( 5, "Caltrain Express", 200),
+    // new UtilityTile(15, "Light Rail", 200),
+    // new UtilityTile(25, "Blue Line", 200),
+    // new UtilityTile(35, "Clipper", 200),
 ];
 
 
