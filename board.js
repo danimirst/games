@@ -77,7 +77,7 @@ var ChanceTile = function(i) {
 ChanceTile.prototype.draw = function() {
     var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
     border.strokeColor = 'black';
-    var text = new PointText(border.bounds.center);
+    var text = new PointText(border.bounds.topCenter + [0, tileFontSize*1.44]);
     text.content = 'Chance';
     text.style = {
         fontSize : tileFontSize,
@@ -95,7 +95,7 @@ var CommunityChestTile = function(i) {
 CommunityChestTile.prototype.draw = function() {
     var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
     border.strokeColor = 'black';
-    var text = new PointText(border.bounds.center);
+    var text = new PointText(border.bounds.topCenter + [0, tileFontSize*1.44]);
     text.content = 'Community\nChest';
     text.style = {
         fontSize : tileFontSize,
@@ -104,6 +104,46 @@ CommunityChestTile.prototype.draw = function() {
     var tile = new Group(border, text);
     place_tile(tile, this.index);
 };
+
+
+var UtilityTile = function(i, name, price) {
+    this.index = i;
+    this.name = name;
+    this.price = price;
+}
+
+UtilityTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.bounds.topCenter + [0, tileFontSize*2.55]);
+    text.content = this.name;
+    text.style = {
+        fontSize : tileFontSize,
+        justification: 'center'
+    };
+    var tile = new Group(border, text);
+    place_tile(tile, this.index);
+};
+
+var TaxTile = function(i, name, tax) {
+    this.index = i;
+    this.name = name;
+    this.tax = tax;
+}
+
+TaxTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileWidth, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.bounds.topCenter + [0, tileFontSize*2]);
+    text.content = this.name;
+    text.style = {
+        fontSize : tileFontSize,
+        justification: 'center'
+    };
+    var tile = new Group(border, text);
+    place_tile(tile, this.index);
+};
+
 
 
 
@@ -119,6 +159,8 @@ var tiles = [
     new PropertyTile(1, "Intel\nMuseum", 60, purple),
     new CommunityChestTile(2),
     new PropertyTile(3, "Winchester\nMystery\nHouse", 60, purple),
+    new TaxTile(4, "Income Tax", 200),
+    new UtilityTile(5, "Rapid Bus", 200),
 
     new PropertyTile(6, "Ulistac\nNatural\nArea", 100, sky_blue),
     new ChanceTile(7),
@@ -126,8 +168,10 @@ var tiles = [
     new PropertyTile(9, "Central\nPark", 100, sky_blue),
 
     new PropertyTile(11, "Meridian", 140, pink),
+    new UtilityTile(12, "Electric\nCompany", 150),
     new PropertyTile(13, "Benton\nStreet", 140, pink),
     new PropertyTile(14, "Pomeroy\nAvenue", 160, pink),
+    new UtilityTile(15, "Caltrain\nExpress", 200),
 
     new PropertyTile(16, "Voyager\nCraft\nCoffee", 180, orange),
     new CommunityChestTile(17),
@@ -135,21 +179,24 @@ var tiles = [
     new PropertyTile(19, "Target", 200, orange),
 
     new PropertyTile(21, "Saratoga\nAvenue", 220, red),
-    new ChanceTile  (22),
+    new ChanceTile(22),
     new PropertyTile(23, "The\nAlameda", 220, red),
     new PropertyTile(24, "Lincoln\nSt.", 240, red),
+    new UtilityTile(25, "Light Rail", 200),
 
     new PropertyTile(26, "Lawrence\nExpwy.", 260, yellow),
     new PropertyTile(27, "San\nTomas\nExpwy.", 260, yellow),
+    new UtilityTile(28, "Water\nWorks", 150),
     new PropertyTile(29, "Central\nExpwy.", 280, yellow),
 
     new PropertyTile(31, "Homestead\nRd.", 300 , green),
     new PropertyTile(32, "El\nCamino\nReal", 300, green),
     new CommunityChestTile(33),
     new PropertyTile(34, "Stevens\nCreek\nBlvd.", 320, green),
-
-    new ChanceTile  (36),
+    new UtilityTile(35, "Clipper", 200),
+    new ChanceTile(36),
     new PropertyTile(37, "Great\nAmerica", 350, blue),
+    new TaxTile(38, "Luxury Tax", 75),
     new PropertyTile(39, "Santana\nRow", 400, blue),
 
 
