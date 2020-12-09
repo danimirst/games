@@ -29,10 +29,14 @@ jailRect.bottomLeft = boardRect.bottomLeft;
 var jailSquare = new Path.Rectangle(jailRect);
 jailSquare.strokeColor = 'black';
 
-var text = new PointText(new Point(200 + boardSize * 0.785, 410));
-text.justification = 'center';
-text.fillColor = 'black';
-text.content = 'MONOPOLY';
+var titleText = new PointText(board.bounds.center);
+titleText.content = 'MONOPOLY';
+titleText.style = {
+    justification: 'center',
+    fontSize: 50,
+    fillColor: 'black',
+    // fontFamily: 'Lato',
+};
 
 
 function PropertyTile(index, name, price, color) {
@@ -48,7 +52,13 @@ PropertyTile.prototype.draw = function() {
     var color_band = new Path.Rectangle(0, 0, tileWidth, tileHeight/5);
     color_band.strokeColor = 'black';
     color_band.fillColor = this.color;
-    var tile = new Group(border, color_band);
+    var text = new PointText(border.bounds.center);
+    text.content = this.name;
+    text.style = {
+        fontSize : 9,
+        justification: 'center'
+    };
+    var tile = new Group(border, color_band, text);
     place_tile(tile, this.index);
 };
 
@@ -63,34 +73,34 @@ var green = '#0a611b';
 var blue = '#1342c2';
 var tiles = [
     new PropertyTile(1, "Linda Mar", 60, purple),
-    new PropertyTile(3, "Moss Beach", 60, purple),
+    new PropertyTile(3, "Moss\nBeach", 60, purple),
 
     new PropertyTile(6, "Atherton", 100, sky_blue),
-    new PropertyTile(8, "Pruneridge Avenue", 100, sky_blue),
-    new PropertyTile(9, "Strawberry Park", 12, sky_blue),
+    new PropertyTile(8, "Prune-\nridge\nAvenue", 100, sky_blue),
+    new PropertyTile(9, "Straw-\nberry\nPark", 12, sky_blue),
 
     new PropertyTile(11, "Meridian", 140, pink),
-    new PropertyTile(13, "Benton Street", 140, pink),
-    new PropertyTile(14, "Pomeroy Avenue", 160, pink),
+    new PropertyTile(13, "Benton\nStreet", 140, pink),
+    new PropertyTile(14, "Pomeroy\nAvenue", 160, pink),
 
-    new PropertyTile(16, "Saratoga Avenue", 180, orange),
+    new PropertyTile(16, "Saratoga\nAvenue", 180, orange),
     new PropertyTile(18, "Via Torino", 180, orange),
-    new PropertyTile(19, "~New York Avenue", 200, orange),
+    new PropertyTile(19, "New York\nAvenue", 200, orange),
 
-    new PropertyTile(21, "~Kentucky Avenue", 220, red),
-    new PropertyTile(23, "~Indiana Avenue", 220, red),
-    new PropertyTile(24, "~Illinois Avenue", 240, red),
+    new PropertyTile(21, "Kentucky\nAvenue", 220, red),
+    new PropertyTile(23, "Indiana\nAvenue", 220, red),
+    new PropertyTile(24, "Illinois\nAvenue", 240, red),
 
-    new PropertyTile(26, "~Atlantic Avenue", 260, yellow),
-    new PropertyTile(27, "~Ventnor Avenue", 260, yellow),
-    new PropertyTile(29, "~Marvin Gardens", 280, yellow),
+    new PropertyTile(26, "Atlantic\nAvenue", 260, yellow),
+    new PropertyTile(27, "Ventnor\nAvenue", 260, yellow),
+    new PropertyTile(29, "Marvin\nGardens", 280, yellow),
 
-    new PropertyTile(31, "~Pacific Avenue", 300 , green),
-    new PropertyTile(32, "~North Carolina Avenue", 300, green),
-    new PropertyTile(34, "~Pennsylvania Avenue", 320, green),
+    new PropertyTile(31, "Pacific\n Avenue", 300 , green),
+    new PropertyTile(32, "North\nCarolina\nAvenue", 300, green),
+    new PropertyTile(34, "Penn-\nsylvania\nAvenue", 320, green),
 
-    new PropertyTile(37, "~Park Place", 350, blue),
-    new PropertyTile(39, "~Boardwalk", 400, blue),
+    new PropertyTile(37, "Park Place", 350, blue),
+    new PropertyTile(39, "Boardwalk", 400, blue),
 
     // new PropertyTile( 5, "Caltrain Express", 20),
     // new PropertyTile(15, "Light Rail", 200),
