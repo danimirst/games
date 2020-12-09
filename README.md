@@ -1,4 +1,5 @@
 # monopoly
-monopoly game in js
+fully functional monopoly game in js
 
-work is needed
+has acceptable graphics so far
+
