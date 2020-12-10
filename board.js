@@ -36,7 +36,6 @@ titleText.style = {
     justification: 'center',
     fontSize: boardSize * 0.09,
     fillColor: 'black',
-    // fontFamily: 'Lato',
 };
 
 
@@ -88,6 +87,10 @@ ChanceTile.prototype.draw = function() {
 };
 
 
+
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
 var CommunityChestTile = function(i) {
     this.index = i;
 }
@@ -106,6 +109,10 @@ CommunityChestTile.prototype.draw = function() {
 };
 
 
+
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
 var UtilityTile = function(i, name, price) {
     this.index = i;
     this.name = name;
@@ -125,6 +132,11 @@ UtilityTile.prototype.draw = function() {
     place_tile(tile, this.index);
 };
 
+
+
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
 var TaxTile = function(i, name, tax) {
     this.index = i;
     this.name = name;
@@ -146,6 +158,9 @@ TaxTile.prototype.draw = function() {
 
 
 
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
 
 var purple = '#390e59';
 var sky_blue = '#88c4f2';
@@ -155,6 +170,7 @@ var red = '#f21b1b';
 var yellow = '#fcfc17';
 var green = '#0a611b';
 var blue = '#1342c2';
+
 var tiles = [
     new PropertyTile(1, "Intel\nMuseum", 60, purple),
     new CommunityChestTile(2),
@@ -167,7 +183,7 @@ var tiles = [
     new PropertyTile(8, "Bowers\nPark", 12, sky_blue),
     new PropertyTile(9, "Central\nPark", 100, sky_blue),
 
-    new PropertyTile(11, "Meridian", 140, pink),
+    new PropertyTile(11, "Kiely Blvd.", 140, pink),
     new UtilityTile(12, "Electric\nCompany", 150),
     new PropertyTile(13, "Benton\nStreet", 140, pink),
     new PropertyTile(14, "Pomeroy\nAvenue", 160, pink),
@@ -198,12 +214,6 @@ var tiles = [
     new PropertyTile(37, "Great\nAmerica", 350, blue),
     new TaxTile(38, "Luxury Tax", 75),
     new PropertyTile(39, "Santana\nRow", 400, blue),
-
-
-    // new UtilityTile( 5, "Caltrain Express", 200),
-    // new UtilityTile(15, "Light Rail", 200),
-    // new UtilityTile(25, "Blue Line", 200),
-    // new UtilityTile(35, "Clipper", 200),
 ];
 
 
@@ -214,9 +224,5 @@ var place_tile = function(tile, i) {
 
 
 for (var i = 0; i < tiles.length; i++) {
-    console.log(tiles[i]);
     tiles[i].draw();
 }
-
-// console.log(tiles)
-
