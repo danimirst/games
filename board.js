@@ -61,8 +61,8 @@ PropertyTile.prototype.draw = function() {
         fontSize : tileFontSize,
         justification: 'center'
     };
-    var tile = new Group(border, color_band, text);
-    place_tile(tile, this.index);
+    this.tile = new Group(border, color_band, text);
+    place_tile(this.tile, this.index);
 };
 
 
@@ -82,8 +82,8 @@ ChanceTile.prototype.draw = function() {
         fontSize : tileFontSize,
         justification: 'center'
     };
-    var tile = new Group(border, text);
-    place_tile(tile, this.index);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
 };
 
 
@@ -104,8 +104,8 @@ CommunityChestTile.prototype.draw = function() {
         fontSize : tileFontSize,
         justification: 'center'
     };
-    var tile = new Group(border, text);
-    place_tile(tile, this.index);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
 };
 
 
@@ -128,8 +128,8 @@ UtilityTile.prototype.draw = function() {
         fontSize : tileFontSize,
         justification: 'center'
     };
-    var tile = new Group(border, text);
-    place_tile(tile, this.index);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
 };
 
 
@@ -152,8 +152,8 @@ TaxTile.prototype.draw = function() {
         fontSize : tileFontSize,
         justification: 'center'
     };
-    var tile = new Group(border, text);
-    place_tile(tile, this.index);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
 };
 
 
@@ -226,3 +226,4 @@ var place_tile = function(tile, i) {
 for (var i = 0; i < tiles.length; i++) {
     tiles[i].draw();
 }
+globals.tiles = tiles;

@@ -1,10 +1,19 @@
-// var Player1stats = [money = 2000, properties = [], jail = false, get_out_of_jail = 0, location = 0];
-var Player = function() {
-    var icon = new Path.Circle(6, 100, 7);
-    icon.fillColor = 'yellow';
-    // icon.strokeColor = 'black';
-    icon.shadowColor = 'black';
-    icon.shadowBlur = 5;
+// var Player1stats = [money = 2000, properties = [], jail = false, get_out_of_jail = 0, location = 0, bankrupt = false];
+
+var PlayerToken = function(color) {
+    this.token = new Path.Circle(100, 100, 7);
+    this.token.style = {
+        shadowBlur: 5,
+        shadowColor: 'black',
+        fillColor: '' + color,
+    };
+
+};
+
+var token = new PlayerToken('yellow');
+
+var placeTokenOnTile = function(i, token) {
+    token.token.position = globals.tiles[i].tile.position;
 };
 
 
@@ -20,4 +29,4 @@ var resetDice = function() {
     areDiceRolled = false;
 };
 
-new Player();
+placeTokenOnTile(10, token);
