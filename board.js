@@ -25,11 +25,6 @@ parkingRect.topLeft = boardRect.topLeft;
 var parkingSquare = new Path.Rectangle(parkingRect);
 parkingSquare.strokeColor = 'black';
 
-var jailRect = new Rectangle([0, 0], [tileHeight, tileHeight]);
-jailRect.bottomLeft = boardRect.bottomLeft;
-var jailSquare = new Path.Rectangle(jailRect);
-jailSquare.strokeColor = 'black';
-
 var titleText = new PointText(board.bounds.center);
 titleText.content = 'Santa Clara\nMONOPOLY';
 titleText.style = {
@@ -37,6 +32,98 @@ titleText.style = {
     fontSize: boardSize * 0.09,
     fillColor: 'black',
 };
+
+
+//------------------------------------------------------------------------------
+// Go tile
+//------------------------------------------------------------------------------
+var GoTile = function(index) {
+    this.index = index;
+};
+
+GoTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileHeight, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.position);
+    text.content = "GO";
+    text.style = {
+        fontSize: tileFontSize * 3,
+        justification: 'center',
+        fontWeight: 'bold',
+    };
+    text.rotate(-45, border.position);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
+};
+
+
+
+//------------------------------------------------------------------------------
+// Jail tile
+//------------------------------------------------------------------------------
+var JailTile = function(index) {
+    this.index = index;
+};
+
+JailTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileHeight, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.position);
+    text.content = "JAIL";
+    text.style = {
+        fontSize: tileFontSize * 2,
+        justification: 'center'
+    };
+    text.rotate(-45, border.position);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
+};
+
+
+//------------------------------------------------------------------------------
+// Free Stuff tile
+//------------------------------------------------------------------------------
+var FreeStuffTile = function(index) {
+    this.index = index;
+};
+
+FreeStuffTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileHeight, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.position - [0, tileFontSize*0.5]);
+    text.content = "FREE\nSTUFF";
+    text.style = {
+        fontSize: tileFontSize * 2,
+        justification: 'center'
+    };
+    text.rotate(-45, border.position);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
+    // this.tile.rotate(-180)
+};
+
+
+//------------------------------------------------------------------------------
+// Busted tile
+//------------------------------------------------------------------------------
+var BustedTile = function(index) {
+    this.index = index;
+};
+
+BustedTile.prototype.draw = function() {
+    var border = new Path.Rectangle([0, 0], [tileHeight, tileHeight]);
+    border.strokeColor = 'black';
+    var text = new PointText(border.position);
+    text.content = "BUSTED";
+    text.style = {
+        fontSize: tileFontSize * 2,
+        justification: 'center'
+    };
+    text.rotate(-45, border.position);
+    this.tile = new Group(border, text);
+    place_tile(this.tile, this.index);
+};
+
 
 
 //------------------------------------------------------------------------------
@@ -162,16 +249,17 @@ TaxTile.prototype.draw = function() {
 //
 //------------------------------------------------------------------------------
 
-var purple = '#390e59';
+var purple   = '#390e59';
 var sky_blue = '#88c4f2';
-var pink = '#eb15a3';
-var orange = '#eb8e15';
-var red = '#f21b1b';
-var yellow = '#fcfc17';
-var green = '#0a611b';
-var blue = '#1342c2';
+var pink     = '#eb15a3';
+var orange   = '#eb8e15';
+var red      = '#f21b1b';
+var yellow   = '#fcfc17';
+var green    = '#0a611b';
+var blue     = '#1342c2';
 
 var tiles = [
+    new GoTile(0),
     new PropertyTile(1, "Intel\nMuseum", 60, purple),
     new CommunityChestTile(2),
     new PropertyTile(3, "Winchester\nMystery\nHouse", 60, purple),
@@ -182,6 +270,7 @@ var tiles = [
     new ChanceTile(7),
     new PropertyTile(8, "Bowers\nPark", 12, sky_blue),
     new PropertyTile(9, "Central\nPark", 100, sky_blue),
+    new JailTile(10),
 
     new PropertyTile(11, "Kiely Blvd.", 140, pink),
     new UtilityTile(12, "Electric\nCompany", 150),
@@ -193,6 +282,7 @@ var tiles = [
     new CommunityChestTile(17),
     new PropertyTile(18, "Safeway", 180, orange),
     new PropertyTile(19, "Target", 200, orange),
+    new FreeStuffTile(20),
 
     new PropertyTile(21, "Saratoga\nAvenue", 220, red),
     new ChanceTile(22),
@@ -205,6 +295,7 @@ var tiles = [
     new UtilityTile(28, "Water\nWorks", 150),
     new PropertyTile(29, "Central\nExpwy.", 280, yellow),
 
+    new BustedTile(30),
     new PropertyTile(31, "Homestead\nRd.", 300 , green),
     new PropertyTile(32, "El\nCamino\nReal", 300, green),
     new CommunityChestTile(33),
@@ -218,11 +309,15 @@ var tiles = [
 
 
 var place_tile = function(tile, i) {
-    tile.bounds.bottomRight = board.bounds.bottomRight - new Point((i%10-1)*tileWidth+tileHeight, 0);
+    tile.bounds.bottomRight = board.bounds.bottomRight;
+    if (i % 10) {
+        tile.position.x -= (i % 10 - 1)*tileWidth + tileHeight;
+    }
     tile.rotate(Math.floor(i/10)*90, board.bounds.center);
 };
 
 
+// Draw all tiles
 for (var i = 0; i < tiles.length; i++) {
     tiles[i].draw();
 }

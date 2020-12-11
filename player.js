@@ -1,6 +1,6 @@
 // var Player1stats = [money = 2000, properties = [], jail = false, get_out_of_jail = 0, location = 0, bankrupt = false];
 
-var PlayerToken = function(color) {
+var AddToken = function(color) {
     this.token = new Path.Circle(100, 100, 7);
     this.token.style = {
         shadowBlur: 5,
@@ -10,7 +10,11 @@ var PlayerToken = function(color) {
 
 };
 
-var token = new PlayerToken('yellow');
+var removeToken = function(i) {
+    i = 0;
+};
+
+var token = new AddToken('yellow');
 
 var placeTokenOnTile = function(i, token) {
     token.token.position = globals.tiles[i].tile.position;
@@ -29,4 +33,4 @@ var resetDice = function() {
     areDiceRolled = false;
 };
 
-placeTokenOnTile(10, token);
+placeTokenOnTile(21, token);
