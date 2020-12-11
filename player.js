@@ -33,4 +33,4 @@ var resetDice = function() {
     areDiceRolled = false;
 };
 
-placeTokenOnTile(21, token);
+placeTokenOnTile(39, token);

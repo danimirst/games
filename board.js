@@ -51,6 +51,7 @@ GoTile.prototype.draw = function() {
         justification: 'center',
         fontWeight: 'bold',
     };
+    text.position.y += tileFontSize * 1;
     text.rotate(-45, border.position);
     this.tile = new Group(border, text);
     place_tile(this.tile, this.index);
@@ -74,6 +75,7 @@ JailTile.prototype.draw = function() {
         fontSize: tileFontSize * 2,
         justification: 'center'
     };
+    text.position.y += 2
     text.rotate(-45, border.position);
     this.tile = new Group(border, text);
     place_tile(this.tile, this.index);
@@ -119,6 +121,7 @@ BustedTile.prototype.draw = function() {
         fontSize: tileFontSize * 2,
         justification: 'center'
     };
+    text.position.y += tileFontSize*0.6;
     text.rotate(-45, border.position);
     this.tile = new Group(border, text);
     place_tile(this.tile, this.index);
