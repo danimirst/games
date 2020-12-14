@@ -14,7 +14,7 @@ var removeToken = function(i) {
     i = 0;
 };
 
-var token = new AddToken('yellow');
+// var token = new AddToken('yellow');
 
 var placeTokenOnTile = function(i, token) {
     token.token.position = globals.tiles[i].tile.position;
@@ -33,4 +33,32 @@ var resetDice = function() {
     areDiceRolled = false;
 };
 
-placeTokenOnTile(39, token);
+// placeTokenOnTile(39, token);
+
+// Peer
+function randomId() {
+    var arr = new Uint16Array(3);
+    window.crypto.getRandomValues(arr);
+    return Array.from(arr, x => x.toString(16).padStart(4, "0")).join('-');
+}
+
+var myId = localStorage.getItem("myId");
+if (myId === null)  {
+    myId = randomId();
+    localStorage.setItem("myId", myId);
+}
+
+var peer = new Peer(myId);
+console.log(peer);
+peer.on('open', function(id) {
+    console.log("My peer id is: " + id);
+
+    localStorage.setItem("peerId", "8dfupwl78kp00000")
+    var conn = peer.connect('another-peers-id');
+    conn.on('open', function(){
+      conn.send('');
+    });
+});
+
+
+
