@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 3pt solid;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="TIC_TAC_TOE" width=1380 height=720></canvas>
+    <script>
+        const canvas = document.getElementById("TIC_TAC_TOE");
+        const ctx = canvas.getContext("2d");
+        var w = ctx.canvas.width;
+        var h = ctx.canvas.height;
+
+        function drawGrid(x, y, d) {
+            ctx.moveTo(x+d, y);
+            ctx.lineTo(x+d, y+3*d);
+            ctx.moveTo(x+2*d, y);
+            ctx.lineTo(x+2*d, y+3*d);
+            ctx.moveTo(x, y+d);
+            ctx.lineTo(x+3*d, y+d);
+            ctx.moveTo(x, y+2*d);
+            ctx.lineTo(x+3*d, y+2*d);
+            ctx.stroke();
+        }
+
+        function drawSuperGrid(x, y, D, width) {
+            ctx.lineWidth = width;
+            drawGrid(x, y, D);
+            var d = D/4;
+            var a = (D - 3*d)/2;
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j<3; j++) {
+                    drawGrid((i*D)+x+a, (j*D)+y+a, d);
+                }
+            }
+        }
+
+        drawSuperGrid(355, 60, 200, 5);
+
+    </script>
+</body>
+</html>
