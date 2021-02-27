@@ -49,16 +49,20 @@ if (myId === null)  {
 }
 
 var peer = new Peer(myId);
-console.log(peer);
 peer.on('open', function(id) {
     console.log("My peer id is: " + id);
 
-    localStorage.setItem("peerId", "8dfupwl78kp00000")
-    var conn = peer.connect('another-peers-id');
+    // localStorage.setItem("peerId", "e36f-a025-d6b1")
+    var conn = peer.connect('e36f-a025-d6b1');
     conn.on('open', function(){
-      conn.send('');
+        console.log("Opened connection to peer e36f-a025-d6b1");
+        conn.send('HELLO THERE. I AM A HUMAN.');
+    });
+    conn.on('data', function(msg){
+        console.log("Received: ", msg);
     });
 });
+
 
 
 
